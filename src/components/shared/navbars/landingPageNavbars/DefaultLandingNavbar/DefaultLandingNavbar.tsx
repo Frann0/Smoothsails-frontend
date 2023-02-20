@@ -6,7 +6,9 @@ const DefaultLandingNavbar = () => {
     return (
         <nav className='DefaultNav_Container'>
             <div className='DefaultNav_Logo'>
-                <img src={logo} alt='logo' />
+                <a href='/'>
+                    <img src={logo} alt='logo' />
+                </a>
             </div>
             <div className='DefaultNav_ButtonsContainer'>
                 <button className='DefaultNav_LoginButton'><a href='/app'>Log in</a></button>

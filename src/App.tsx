@@ -4,13 +4,21 @@ import './App.scss'
 import { RouteInterface } from './models/sharedInterfaces'
 import { BrowserRouter as Router, Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom';
 import LandingPage from './pages/LandingPage/LandingPage';
+import AppPage from './pages/AppPage/AppPage';
 function App() {
   const routes = [
     {
       path: '/',
       element: <LandingPage />,
     },
-
+    {
+      path: '/app',
+      element: <AppPage />,
+    },
+    {
+      path: '/app/*',
+      element: <AppPage />,
+    },
     {
       path: '*',
       element: <div>404</div>,
