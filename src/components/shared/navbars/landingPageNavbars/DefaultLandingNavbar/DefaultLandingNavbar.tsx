@@ -10,7 +10,7 @@ const DefaultLandingNavbar = () => {
             </div>
             <div className='DefaultNav_ButtonsContainer'>
                 <button className='DefaultNav_LoginButton'><a href='/app'>Log in</a></button>
-                <button className='DefaultNav_SignUpButton'>Try Now!</button>
+                <button className='DefaultNav_SignUpButton'><a href='/app'>Try Now!</a></button>
             </div>
         </nav>
     )

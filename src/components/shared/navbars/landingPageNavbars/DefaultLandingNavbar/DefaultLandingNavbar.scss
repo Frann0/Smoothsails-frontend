@@ -32,7 +32,16 @@
             background-color: transparent;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            &:hover {
+            a {
+                transition: all 0.2s ease-in-out;
+                text-decoration: none;
+                color: #adb9be;
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+            &:hover > a {
                 color: #fff;
             }
         }
@@ -52,6 +61,11 @@
             background-color: #01c38e;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+
             &:hover {
                 scale: 1.05;
             }
