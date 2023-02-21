@@ -1,12 +1,22 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Icon from '../../icon/Icon'
+import logo from '../../../../assets/shared/logo.svg'
+import logo_long from '../../../../assets/shared/logo_long.svg'
 import './MainAppNavbar.scss'
 const MainAppNavbar = () => {
 
     //TEST DATA TODO: REMOVE
-    const [isAdmin, setIsAdmin] = React.useState(false)
+    const [isAdmin, setIsAdmin] = React.useState(true)
 
     const [isOpened, setIsOpened] = React.useState(false)
+    const [logoState, setLogo] = React.useState('')
+
+    React.useEffect(() => {
+        setLogo(isOpened ? logo_long : logo)
+    }, [isOpened])
+
+
     const RouteElements = [
         {
             path: '/app/projects',
@@ -48,18 +58,32 @@ const MainAppNavbar = () => {
             onclick: () => { toggleMenu() }
         },
         {
+            iconName: 'search',
+            routeName: 'Global Search',
+            requireAdmin: false,
+            onclick: () => { }
+
+        },
+        {
             iconName: 'logout',
             routeName: 'Logout',
             requireAdmin: false,
             onclick: () => { }
         },
+        {
+            iconName: 'notification-none',
+            routeName: 'Notifications',
+            requireAdmin: false,
+            onclick: () => { }
+
+        }
     ]
 
 
 
     const toggleMenu = () => {
         console.log('toggleMenu');
-        
+
         setIsOpened(!isOpened)
     }
 
@@ -94,19 +118,26 @@ const MainAppNavbar = () => {
 
     }
 
-
     return (
-        <div className='AppNavbar_Container'>
+        <div className={`AppNavbar_Container ${isOpened ? 'opened' : 'closed'}`}>
             <div className='AppNavbar_LogoContainer'>
-                <img src="" alt="" />
+                <a href='/app'>
+                    <img src={logoState} alt="" />
+                </a>
             </div>
             <div className='AppNavbar_FunctionalityContainer'>
-                {FunctionalElements.map((route, index) => (
+                {FunctionalElements.slice(0, 2).map((route, index) => (
                     <>
                         {canSeeRoute(route) &&
                             <div key={index} className='AppNavbar_FunctionalityElement' onClick={route.onclick}>
                                 <div className='AppNavbar_IconContainer'>
-                                    B
+                                    {route.iconName === 'toggleMenu' ?
+                                        <>
+                                            {isOpened && <Icon name='panel_close' />}
+                                            {!isOpened && <Icon name='panel_open' />}
+                                        </>
+                                        : <Icon name={route.iconName} />
+                                    }
                                 </div>
                                 {isOpened &&
                                     <div className='AppNavbar_RouteNameContainer'>
@@ -124,8 +155,8 @@ const MainAppNavbar = () => {
                     <>
                         {canSeeRoute(route) &&
                             <div key={index} className='AppNavbar_RouteElement' onClick={() => handleRouteClick(route.path)}>
-                                <div className='AppNavbar_IconContainer'>
-                                    A
+                                <div className={`AppNavbar_IconContainer`}>
+                                    <Icon name={route.iconName} />
                                 </div>
                                 {isOpened &&
                                     <div className='AppNavbar_RouteNameContainer'>
@@ -138,35 +169,60 @@ const MainAppNavbar = () => {
                 ))}
             </div>
 
-            <div className='AppNavbar_FunctionalityContianer'>
-
+            <div className='AppNavbar_FunctionalityContainer'>
+                {FunctionalElements.slice(2).map((route, index) => (
+                    <>
+                        {canSeeRoute(route) &&
+                            <div key={index} className='AppNavbar_FunctionalityElement' onClick={route.onclick}>
+                                <div className='AppNavbar_IconContainer'>
+                                    {route.iconName === 'toggleMenu' ?
+                                        <>
+                                            {isOpened && <Icon name='panel_close' />}
+                                            {!isOpened && <Icon name='panel_open' />}
+                                        </>
+                                        : <Icon name={route.iconName} />
+                                    }
+                                </div>
+                                {isOpened &&
+                                    <div className='AppNavbar_RouteNameContainer'>
+                                        {route.routeName}
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </>
+                ))}
             </div>
 
             <div className='AppNavbar_UserContainer'>
-                <div className='AppNavbar_UserPic'>
-                    <img src="" alt="" />
-                </div>
-                {isOpened &&
-                    <div className='AppNavbar_UserInformationContainer'>
-                        <p className='AppNavbar_FirstName'>
-                            First Name
-                        </p>
-                        <p className='AppNavbar_LastName'>
-                            Last Name
-                        </p>
+                <div className='AppNavbar_UserElement'>
+                    <div className='AppNavbar_UserPic'>
+                        <img src="" alt="" />
                     </div>
-                }
+                    {isOpened &&
+                        <div className='AppNavbar_UserInformationContainer'>
+                            <p className='AppNavbar_FirstName'>
+                                First Name
+                            </p>
+                            <p className='AppNavbar_LastName'>
+                                Last Name
+                            </p>
+                        </div>
+                    }
+                </div>
             </div>
             <div className='AppNavbar_PromoContainer'>
-                <div className='AppNavbar_PromoIcon'>
-                    <img src="" alt="" />
-                </div>
-                {isOpened &&
-                    <div className='AppNavbar_PromoText'>
-                        <p className='AppNavbar_PromoPowered'> Powered by </p>
-                        <p className='AppNavbar_PromoName'> <b>Smooth Sails</b> </p>
+                <div className='AppNavbar_PromoElement'>
+                    <div className='AppNavbar_PromoIcon'>
+                        <img src={logo} alt="" />
                     </div>
-                }
+                    {isOpened &&
+                        <div className='AppNavbar_PromoText'>
+                            <p className='AppNavbar_PromoPowered'> Powered by </p>
+                            <p className='AppNavbar_PromoName'> <b>Smooth Sails</b> </p>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     )

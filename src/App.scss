@@ -22,13 +22,8 @@ body {
   width: 100%;
 }
 
-img{
+img {
   -webkit-user-drag: none;
-}
-
-::selection {
-  background: #ffffff;
-  color: #12151a;
 }
 
 * {
@@ -88,112 +83,10 @@ img{
   background: transparent;
 }
 
-.Hamburger_Container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #12151a;
-  overflow: hidden;
-  .Hamburger_Logo {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    img {
-      width: 80px;
-      height: 80px;
-    }
-  }
-  .Hamburger_Close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-      cursor: pointer;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .Hamburger_LinksWrapper {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    margin-top: 100px;
-    gap: 40px;
-
-    .Hamburger_Link {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-
-      .Hamburger_LinkItem {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #fff;
-        text-align: center;
-        text-decoration: none;
-        font-family: "Visuelt Pro";
-      }
-    }
-  }
+img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
-
-.Hamburger_Opening {
-  animation: Hamburger_ContainerAnimation 0.5s ease-in-out forwards;
-}
-
-.Hamburger_Closing {
-  animation: Hamburger_ContainerAnimationReverse 0.5s ease-in-out forwards;
-}
-
-.Hamburger_Closed {
-  display: none;
-}
-
-@keyframes Hamburger_ContainerAnimation {
-  0% {
-    right: -100%;
-  }
-  100% {
-    right: 0;
-  }
-}
-
-@keyframes Hamburger_ContainerAnimationReverse {
-  0% {
-    right: 0;
-  }
-  100% {
-    right: -100%;
-  }
-}
-
 
 //--------------------------------------------------------------
 // COLORS
@@ -201,12 +94,12 @@ img{
 
 $white: #fff;
 $background-light: #f3f3f3;
-$background-darker: #E0E0E0;
-$border-light: #CECECE;
-$placeholder: #ADB9BE;
+$background-darker: #e0e0e0;
+$border-light: #cecece;
+$placeholder: #adb9be;
 $gray-text: #606060;
 
-$nav-primary: #2C3539;
+$nav-primary: #2c3539;
 $nav-secondary: #15161b;
 
 $green-primary: #01c38e;
@@ -216,12 +109,17 @@ $current-day: rgba($green-primary, 0.05);
 $weekend-day: rgba(#000, 0.05);
 $weekday-day: transparent;
 
-$chat-away: #FFB800;
-$chat-busy: #D4000D;
+$chat-away: #ffb800;
+$chat-busy: #d4000d;
 $chat-online: $green-primary;
 
 $gray-gradient: linear-gradient(180deg, $background-light 0%, $border-light 100%);
 $blue-gradient: linear-gradient(180deg, $nav-primary 0%, $nav-secondary 100%);
 
-
-
+$icon_white: invert(100%);
+$icon_placeholder: invert(88%) sepia(10%) saturate(242%) hue-rotate(152deg) brightness(85%) contrast(84%);
+$icon_blue-primary: invert(16%) sepia(15%) saturate(597%) hue-rotate(153deg) brightness(93%) contrast(87%);
+$icon_lightgray: invert(87%) sepia(0%) saturate(4%) hue-rotate(251deg) brightness(95%) contrast(94%);
+$icon_darkgray: invert(41%) sepia(0%) saturate(1259%) hue-rotate(212deg) brightness(87%) contrast(85%);
+$icon_green-secondary: invert(43%) sepia(28%) saturate(1103%) hue-rotate(113deg) brightness(107%) contrast(85%);
+$icon_green-primary: invert(70%) sepia(36%) saturate(7030%) hue-rotate(124deg) brightness(95%) contrast(99%);
